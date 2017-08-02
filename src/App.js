@@ -24,14 +24,20 @@ class ComponentWithState extends Component {
 
   constructor(props){
     super(props);
-    this.state = {status: 'initialized in the constructor', color: 'purple'};
+    this.state = {status: 'initialized in the constructor', color: 'purple', ago: 0};
   }
   componentDidMount() {
-   setTimeout( () => {
-     this.setState({
-     status: 'i was mounted 3 seconds ago!',
-     color: 'blue'
-   })}, 3000)
+   setInterval(
+     () => {
+     this.setState( (prevState, props) => {
+       return {
+          status: 'i was mounted ' + prevState.ago +' seconds ago!',
+          color: 'blue',
+          ago: prevState.ago+1
+        }
+     }
+
+  )}, 1000);
   }
   render(){
       return <h5>Hello, I am the state object, here is my status:<i style={{color: this.state.color}}>{this.state.status}</i></h5>
