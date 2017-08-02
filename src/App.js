@@ -53,7 +53,7 @@ class ComponentWithState extends Component {
       return (
             <div>
               <h5>Hello, I am the state object, here is my status:<i style={{color: this.state.color}}>{this.state.status}</i></h5>
-              <button onClick={this.handleClick}>Toggle state object's toggle property</button>{this.state.toggle}
+              <button class="mdc-button mdc-button--accent" onClick={this.handleClick}>Toggle state object's toggle property</button>{this.state.toggle}
             </div>
 );
   }
