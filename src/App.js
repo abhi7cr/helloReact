@@ -24,8 +24,9 @@ class ComponentWithState extends Component {
 
   constructor(props){
     super(props);
-    this.state = {status: 'initialized in the constructor', color: 'purple', ago: 0};
+    this.state = {status: 'initialized in the constructor', color: 'purple', ago: 0, toggle:'false'};
   }
+
   componentDidMount() {
    setInterval(
      () => {
@@ -39,8 +40,22 @@ class ComponentWithState extends Component {
 
   )}, 1000);
   }
+
+  handleClick = () => {
+    this.setState((prevState, props) => {
+      return {
+        toggle: prevState.toggle === 'true'? 'false':'true'
+      }
+    })
+  }
+
   render(){
-      return <h5>Hello, I am the state object, here is my status:<i style={{color: this.state.color}}>{this.state.status}</i></h5>
+      return (
+            <div>
+              <h5>Hello, I am the state object, here is my status:<i style={{color: this.state.color}}>{this.state.status}</i></h5>
+              <button onClick={this.handleClick}>Toggle state object's toggle property</button>{this.state.toggle}
+            </div>
+);
   }
 }
 
