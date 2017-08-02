@@ -9,6 +9,7 @@ import FontIcon from 'material-ui/FontIcon';
 import {red500, yellow500, blue500, deepPurple500} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import Router from './router';
 
 injectTapEventPlugin();
 
@@ -97,6 +98,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
+        <Router/>
          <ChildComponent name="I'm a child component" color="red"/>
       </div>
     );
