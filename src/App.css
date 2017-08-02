@@ -22,3 +22,8 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+body {
+font-family: 'Indie Flower', serif;
+font-size:1.5em;
+}

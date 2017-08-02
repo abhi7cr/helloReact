@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import './App.css';
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import FontIcon from 'material-ui/FontIcon';
+import {red500, yellow500, blue500, deepPurple500} from 'material-ui/styles/colors';
+import IconButton from 'material-ui/IconButton';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 
 var ChildComponent = (props) => {
@@ -22,10 +32,21 @@ var GrandChildComponent = (props) => {
 
 class ComponentWithState extends Component {
 
+   styles = {
+      button: {
+      margin: 12
+    }
+  };
+
   constructor(props){
     super(props);
     this.state = {status: 'initialized in the constructor', color: 'purple', ago: 0, toggle:'false'};
   }
+
+
+   getChildContext() {
+                return { muiTheme: getMuiTheme(baseTheme) };
+            }
 
   componentDidMount() {
    setInterval(
@@ -53,11 +74,20 @@ class ComponentWithState extends Component {
       return (
             <div>
               <h5>Hello, I am the state object, here is my status:<i style={{color: this.state.color}}>{this.state.status}</i></h5>
-              <button class="mdc-button mdc-button--accent" onClick={this.handleClick}>Toggle state object's toggle property</button>{this.state.toggle}
+              <RaisedButton label="Toggle state object's toggle property" 
+                  secondary={true} 
+                  onClick={this.handleClick}
+                  icon={<FontIcon className="material-icons" color={deepPurple500}>
+                    {this.state.toggle === 'true'?'check_box': 'check_box_outline_blank'}</FontIcon>}/> 
+                    {this.state.toggle}
             </div>
 );
   }
 }
+
+ ComponentWithState.childContextTypes = {
+            muiTheme: React.PropTypes.object.isRequired,
+        };
 
 class App extends Component {
   render() {
